@@ -54,3 +54,20 @@ LHEVideoRTPSource::~LHEVideoRTPSource() {
 char const* LHEVideoRTPSource::MIMEtype() const {
   return "video/lhe";
 }
+
+////////// LHEBufferedPacket and LHEBufferedPacketFactory implementation
+
+void LHEBufferedPacket::reset() {
+  BufferedPacket::reset();
+}
+
+unsigned LHEBufferedPacket
+::nextEnclosedFrameSize(unsigned char*& framePtr, unsigned dataSize) {
+
+  return dataSize;
+}
+
+BufferedPacket* LHEBufferedPacketFactory
+::createNewPacket(MultiFramedRTPSource* /*ourSource*/) {
+  return new LHEBufferedPacket;
+}
