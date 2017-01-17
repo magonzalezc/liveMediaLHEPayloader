@@ -17,6 +17,14 @@ protected:
 	// called only by createNew()
 
   virtual ~LHEVideoRTPSink();
+  virtual void doSpecialFrameHandling(unsigned fragmentationOffset,
+                                      unsigned char* frameStart,
+                                      unsigned numBytesInFrame,
+                                      struct timeval framePresentationTime,
+                                      unsigned numRemainingBytes);
+  virtual
+  Boolean frameCanAppearAfterPacketStart(unsigned char const* frameStart,
+					 unsigned numBytesInFrame) const;
 
 };
 
