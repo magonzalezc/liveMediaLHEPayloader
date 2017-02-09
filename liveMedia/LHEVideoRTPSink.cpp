@@ -2,6 +2,7 @@
 // Implementation
 
 #include "LHEVideoRTPSink.hh"
+#include "SimpleRTPSink.hh"
 
 LHEVideoRTPSink
 ::LHEVideoRTPSink(UsageEnvironment& env, Groupsock* RTPgs)
