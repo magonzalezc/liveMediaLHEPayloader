@@ -34,7 +34,7 @@ LHEVideoRTPSource::createNew(UsageEnvironment& env, Groupsock* RTPgs,
 			      unsigned rtpTimestampFrequency,
 			      unsigned defaultWidth, unsigned defaultHeight) {
   return new LHEVideoRTPSource(env, RTPgs, rtpPayloadFormat,
-				rtpTimestampFrequency, defaultWidth, defaultHeight);
+				rtpTimestampFrequency);
 }
 
 LHEVideoRTPSource::LHEVideoRTPSource(UsageEnvironment& env,
@@ -44,8 +44,7 @@ LHEVideoRTPSource::LHEVideoRTPSource(UsageEnvironment& env,
 				       unsigned defaultWidth, unsigned defaultHeight)
   : MultiFramedRTPSource(env, RTPgs,
 			 rtpPayloadFormat, rtpTimestampFrequency,
-			 new LHEBufferedPacketFactory),
-    fDefaultWidth(defaultWidth), fDefaultHeight(defaultHeight) {
+			 new LHEBufferedPacketFactory) {
 }
 
 LHEVideoRTPSource::~LHEVideoRTPSource() {

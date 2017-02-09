@@ -16,7 +16,7 @@ LHEVideoRTPSink::createNew(UsageEnvironment& env, Groupsock* RTPgs) {
   return new LHEVideoRTPSink(env, RTPgs);
 }
 
-void LHERTPSink::doSpecialFrameHandling(unsigned fragmentationOffset,
+void LHEVideoRTPSink::doSpecialFrameHandling(unsigned fragmentationOffset,
 					   unsigned char* frameStart,
 					   unsigned numBytesInFrame,
 					   struct timeval framePresentationTime,
