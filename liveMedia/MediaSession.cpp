@@ -1336,9 +1336,7 @@ Boolean MediaSubsession::createSourceObjects(int useSpecialRTPoffset) {
 	fReadSource = fRTPSource
 	  = LHEVideoRTPSource::createNew(env(), fRTPSocket,
 					    fRTPPayloadFormat,
-					    fRTPTimestampFrequency,
-					    videoWidth(),
-					    videoHeight());
+					    fRTPTimestampFrequency);
       } else if (strcmp(fCodecName, "DV") == 0) {
 	fReadSource = fRTPSource
 	  = DVVideoRTPSource::createNew(env(), fRTPSocket,
