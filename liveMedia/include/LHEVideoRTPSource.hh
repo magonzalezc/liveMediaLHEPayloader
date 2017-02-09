@@ -13,8 +13,7 @@ public:
   static LHEVideoRTPSource*
   createNew(UsageEnvironment& env, Groupsock* RTPgs,
 	    unsigned char rtpPayloadFormat = 69,
-	    unsigned rtpPayloadFrequency = 90000,
-	    unsigned defaultWidth = 0, unsigned defaultHeight = 0);
+	    unsigned rtpPayloadFrequency = 90000);
 
 protected:
   virtual ~LHEVideoRTPSource();
@@ -22,8 +21,7 @@ protected:
 private:
   LHEVideoRTPSource(UsageEnvironment& env, Groupsock* RTPgs,
 		     unsigned char rtpPayloadFormat,
-		     unsigned rtpTimestampFrequency,
-		     unsigned defaultWidth, unsigned defaultHeight);
+		     unsigned rtpTimestampFrequency);
       // called only by createNew()
 
   // Image dimensions from the SDP description, if any

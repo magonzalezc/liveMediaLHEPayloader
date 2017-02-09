@@ -31,8 +31,7 @@ private: // redefined virtual functions
 LHEVideoRTPSource*
 LHEVideoRTPSource::createNew(UsageEnvironment& env, Groupsock* RTPgs,
 			      unsigned char rtpPayloadFormat,
-			      unsigned rtpTimestampFrequency,
-			      unsigned defaultWidth, unsigned defaultHeight) {
+			      unsigned rtpTimestampFrequency) {
   return new LHEVideoRTPSource(env, RTPgs, rtpPayloadFormat,
 				rtpTimestampFrequency);
 }
@@ -40,8 +39,7 @@ LHEVideoRTPSource::createNew(UsageEnvironment& env, Groupsock* RTPgs,
 LHEVideoRTPSource::LHEVideoRTPSource(UsageEnvironment& env,
 				       Groupsock* RTPgs,
 				       unsigned char rtpPayloadFormat,
-				       unsigned rtpTimestampFrequency,
-				       unsigned defaultWidth, unsigned defaultHeight)
+				       unsigned rtpTimestampFrequency)
   : MultiFramedRTPSource(env, RTPgs,
 			 rtpPayloadFormat, rtpTimestampFrequency,
 			 new LHEBufferedPacketFactory) {
