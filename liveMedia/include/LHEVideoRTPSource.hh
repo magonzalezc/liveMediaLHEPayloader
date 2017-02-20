@@ -8,6 +8,8 @@
 #include "MultiFramedRTPSource.hh"
 #endif
 
+#define MAX_LHE_HEADER_SIZE 1024
+
 class LHEVideoRTPSource: public MultiFramedRTPSource {
 public:
   static LHEVideoRTPSource*
@@ -24,8 +26,10 @@ private:
 		     unsigned rtpTimestampFrequency);
       // called only by createNew()
 
-  // Image dimensions from the SDP description, if any
-  unsigned fDefaultWidth, fDefaultHeight;
+protected:
+  // redefined virtual functions:
+  virtual Boolean processSpecialHeader(BufferedPacket* packet,
+                                       unsigned& resultSpecialHeaderSize);
 
 private:
   virtual char const* MIMEtype() const;

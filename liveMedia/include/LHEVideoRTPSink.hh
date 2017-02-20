@@ -25,6 +25,7 @@ protected:
   virtual
   Boolean frameCanAppearAfterPacketStart(unsigned char const* frameStart,
 					 unsigned numBytesInFrame) const;
+  //virtual unsigned specialHeaderSize() const;
 
 };
 

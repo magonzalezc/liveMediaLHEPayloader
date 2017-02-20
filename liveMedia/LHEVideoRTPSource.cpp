@@ -3,30 +3,6 @@
 
 #include "LHEVideoRTPSource.hh"
 
-////////// LHEBufferedPacket and LHEBufferedPacketFactory //////////
-
-class LHEBufferedPacket: public BufferedPacket {
-public:
-  Boolean completesFrame;
-
-private:
-  // Redefined virtual functions:
-  virtual void reset();
-  virtual unsigned nextEnclosedFrameSize(unsigned char*& framePtr,
-					 unsigned dataSize);
-};
-
-class LHEBufferedPacketFactory: public BufferedPacketFactory {
-private: // redefined virtual functions
-  virtual BufferedPacket* createNewPacket(MultiFramedRTPSource* ourSource);
-};
-
-
-////////// JPEGVideoRTPSource implementation //////////
-
-#define BYTE unsigned char
-#define WORD unsigned
-#define DWORD unsigned long
 
 LHEVideoRTPSource*
 LHEVideoRTPSource::createNew(UsageEnvironment& env, Groupsock* RTPgs,
@@ -41,30 +17,33 @@ LHEVideoRTPSource::LHEVideoRTPSource(UsageEnvironment& env,
 				       unsigned char rtpPayloadFormat,
 				       unsigned rtpTimestampFrequency)
   : MultiFramedRTPSource(env, RTPgs,
-			 rtpPayloadFormat, rtpTimestampFrequency,
-			 new LHEBufferedPacketFactory) {
+			 rtpPayloadFormat, rtpTimestampFrequency) {
 }
 
 LHEVideoRTPSource::~LHEVideoRTPSource() {
 }
 
 char const* LHEVideoRTPSource::MIMEtype() const {
-  return "video/lhe";
+  return "video/LHE";
 }
 
-////////// LHEBufferedPacket and LHEBufferedPacketFactory implementation
+Boolean LHEVideoRTPSource
+::processSpecialHeader(BufferedPacket* packet,
+		       unsigned& resultSpecialHeaderSize) {
+  unsigned char* headerStart = packet->data();
+  unsigned packetSize = packet->dataSize();
+  
+  if (packetSize == 0) return False;
+  resultSpecialHeaderSize = 0; // unless we learn otherwise
 
-void LHEBufferedPacket::reset() {
-  BufferedPacket::reset();
+  //u_int8_t const byte1 = *headerStart;
+  //Boolean const Start = (byte1&0x10) != 0;
+
+  //fCurrentPacketBeginsFrame = Start == 0;
+
+  fCurrentPacketCompletesFrame = packet->rtpMarkerBit();
+
+  return True;
 }
 
-unsigned LHEBufferedPacket
-::nextEnclosedFrameSize(unsigned char*& framePtr, unsigned dataSize) {
 
-  return dataSize;
-}
-
-BufferedPacket* LHEBufferedPacketFactory
-::createNewPacket(MultiFramedRTPSource* /*ourSource*/) {
-  return new LHEBufferedPacket;
-}
