@@ -1,22 +1,22 @@
-// RTP sink for LHE codec
+// RTP sink for MLHE codec
 // C++ header
 
-#ifndef _LHE_VIDEO_RTP_SINK_HH
-#define _LHE_VIDEO_RTP_SINK_HH
+#ifndef _MLHE_VIDEO_RTP_SINK_HH
+#define _MLHE_VIDEO_RTP_SINK_HH
 
 #ifndef _VIDEO_RTP_SINK_HH
 #include "VideoRTPSink.hh"
 #endif
 
-class LHEVideoRTPSink: public VideoRTPSink {
+class MLHEVideoRTPSink: public VideoRTPSink {
 public:
-  static LHEVideoRTPSink* createNew(UsageEnvironment& env, Groupsock* RTPgs);
+  static MLHEVideoRTPSink* createNew(UsageEnvironment& env, Groupsock* RTPgs);
 
 protected:
-  LHEVideoRTPSink(UsageEnvironment& env, Groupsock* RTPgs);
+  MLHEVideoRTPSink(UsageEnvironment& env, Groupsock* RTPgs);
 	// called only by createNew()
 
-  virtual ~LHEVideoRTPSink();
+  virtual ~MLHEVideoRTPSink();
   virtual void doSpecialFrameHandling(unsigned fragmentationOffset,
                                       unsigned char* frameStart,
                                       unsigned numBytesInFrame,

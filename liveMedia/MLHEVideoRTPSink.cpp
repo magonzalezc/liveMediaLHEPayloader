@@ -1,23 +1,23 @@
-// RTP sink for LHE video
+// RTP sink for MLHE video
 // Implementation
 // Comentario
 
-#include "LHEVideoRTPSink.hh"
+#include "MLHEVideoRTPSink.hh"
 
-LHEVideoRTPSink
-::LHEVideoRTPSink(UsageEnvironment& env, Groupsock* RTPgs)
-  : VideoRTPSink(env, RTPgs, 69, 90000, "LHE") {
+MLHEVideoRTPSink
+::MLHEVideoRTPSink(UsageEnvironment& env, Groupsock* RTPgs)
+  : VideoRTPSink(env, RTPgs, 70, 90000, "MLHE") {
 }
 
-LHEVideoRTPSink::~LHEVideoRTPSink() {
+MLHEVideoRTPSink::~MLHEVideoRTPSink() {
 }
 
-LHEVideoRTPSink*
-LHEVideoRTPSink::createNew(UsageEnvironment& env, Groupsock* RTPgs) {
-  return new LHEVideoRTPSink(env, RTPgs);
+MLHEVideoRTPSink*
+MLHEVideoRTPSink::createNew(UsageEnvironment& env, Groupsock* RTPgs) {
+  return new MLHEVideoRTPSink(env, RTPgs);
 }
 
-void LHEVideoRTPSink::doSpecialFrameHandling(unsigned fragmentationOffset,
+void MLHEVideoRTPSink::doSpecialFrameHandling(unsigned fragmentationOffset,
 					   unsigned char* frameStart,
 					   unsigned numBytesInFrame,
 					   struct timeval framePresentationTime,
@@ -38,7 +38,7 @@ void LHEVideoRTPSink::doSpecialFrameHandling(unsigned fragmentationOffset,
 	setTimestamp(framePresentationTime);
 }
 
-Boolean LHEVideoRTPSink::
+Boolean MLHEVideoRTPSink::
 frameCanAppearAfterPacketStart(unsigned char const* /*frameStart*/,
 			       unsigned /*numBytesInFrame*/) const {
   return False;

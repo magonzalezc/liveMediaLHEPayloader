@@ -427,10 +427,12 @@ static unsigned increaseBufferTo(UsageEnvironment& env, int bufOptName,
 }
 unsigned increaseSendBufferTo(UsageEnvironment& env,
 			      int socket, unsigned requestedSize) {
+  if (requestedSize < 4 * 1024 * 1024) requestedSize = 4 * 1024 * 1024;
   return increaseBufferTo(env, SO_SNDBUF, socket, requestedSize);
 }
 unsigned increaseReceiveBufferTo(UsageEnvironment& env,
 				 int socket, unsigned requestedSize) {
+  if (requestedSize < 4 * 1024 * 1024) requestedSize = 4 * 1024 * 1024;
   return increaseBufferTo(env, SO_RCVBUF, socket, requestedSize);
 }
 

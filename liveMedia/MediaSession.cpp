@@ -468,6 +468,7 @@ char* MediaSession::lookupPayloadFormat(unsigned char rtpPayloadType,
   case 33: {temp = "MP2T"; freq = 90000; nCh = 1; break;}
   case 34: {temp = "H263"; freq = 90000; nCh = 1; break;}
   case 69: {temp = "LHE"; freq = 90000; nCh =1; break;}
+  case 70: {temp = "MLHE"; freq = 90000; nCh =1; break;}
   };
 
   return strDup(temp);
@@ -1337,6 +1338,12 @@ Boolean MediaSubsession::createSourceObjects(int useSpecialRTPoffset) {
 	  	= LHEVideoRTPSource::createNew(env(), fRTPSocket,
 					    fRTPPayloadFormat,
 					    fRTPTimestampFrequency);
+      } else if (strcmp(fCodecName, "MLHE") == 0) {
+           // MLHE custom RTP payload format:
+        fReadSource = fRTPSource
+        = MLHEVideoRTPSource::createNew(env(), fRTPSocket,
+                        fRTPPayloadFormat,
+                        fRTPTimestampFrequency);
       } else if (strcmp(fCodecName, "DV") == 0) {
 	fReadSource = fRTPSource
 	  = DVVideoRTPSource::createNew(env(), fRTPSocket,

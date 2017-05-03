@@ -1,18 +1,18 @@
 // LHE Video RTP Sources
 // Implementation
 
-#include "LHEVideoRTPSource.hh"
+#include "MLHEVideoRTPSource.hh"
 
 
-LHEVideoRTPSource*
-LHEVideoRTPSource::createNew(UsageEnvironment& env, Groupsock* RTPgs,
+MLHEVideoRTPSource*
+MLHEVideoRTPSource::createNew(UsageEnvironment& env, Groupsock* RTPgs,
 			      unsigned char rtpPayloadFormat,
 			      unsigned rtpTimestampFrequency) {
-  return new LHEVideoRTPSource(env, RTPgs, rtpPayloadFormat,
+  return new MLHEVideoRTPSource(env, RTPgs, rtpPayloadFormat,
 				rtpTimestampFrequency);
 }
 
-LHEVideoRTPSource::LHEVideoRTPSource(UsageEnvironment& env,
+MLHEVideoRTPSource::MLHEVideoRTPSource(UsageEnvironment& env,
 				       Groupsock* RTPgs,
 				       unsigned char rtpPayloadFormat,
 				       unsigned rtpTimestampFrequency)
@@ -20,14 +20,14 @@ LHEVideoRTPSource::LHEVideoRTPSource(UsageEnvironment& env,
 			 rtpPayloadFormat, rtpTimestampFrequency) {
 }
 
-LHEVideoRTPSource::~LHEVideoRTPSource() {
+MLHEVideoRTPSource::~MLHEVideoRTPSource() {
 }
 
-char const* LHEVideoRTPSource::MIMEtype() const {
+char const* MLHEVideoRTPSource::MIMEtype() const {
   return "video/LHE";
 }
 
-Boolean LHEVideoRTPSource
+Boolean MLHEVideoRTPSource
 ::processSpecialHeader(BufferedPacket* packet,
 		       unsigned& resultSpecialHeaderSize) {
   unsigned char* headerStart = packet->data();

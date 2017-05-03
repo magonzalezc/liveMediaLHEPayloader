@@ -1,27 +1,27 @@
-// LHE Video RTP Sources
+// MLHE Video RTP Sources
 // Implementation
 
-#ifndef _LHE_VIDEO_RTP_SOURCE_HH
-#define _LHE_VIDEO_RTP_SOURCE_HH
+#ifndef _MLHE_VIDEO_RTP_SOURCE_HH
+#define _MLHE_VIDEO_RTP_SOURCE_HH
 
 #ifndef _MULTI_FRAMED_RTP_SOURCE_HH
 #include "MultiFramedRTPSource.hh"
 #endif
 
-#define MAX_LHE_HEADER_SIZE 1024
+#define MAX_MLHE_HEADER_SIZE 1024
 
-class LHEVideoRTPSource: public MultiFramedRTPSource {
+class MLHEVideoRTPSource: public MultiFramedRTPSource {
 public:
-  static LHEVideoRTPSource*
+  static MLHEVideoRTPSource*
   createNew(UsageEnvironment& env, Groupsock* RTPgs,
-	    unsigned char rtpPayloadFormat = 69,
+	    unsigned char rtpPayloadFormat = 70,
 	    unsigned rtpPayloadFrequency = 90000);
 
 protected:
-  virtual ~LHEVideoRTPSource();
+  virtual ~MLHEVideoRTPSource();
 
 private:
-  LHEVideoRTPSource(UsageEnvironment& env, Groupsock* RTPgs,
+  MLHEVideoRTPSource(UsageEnvironment& env, Groupsock* RTPgs,
 		     unsigned char rtpPayloadFormat,
 		     unsigned rtpTimestampFrequency);
       // called only by createNew()
