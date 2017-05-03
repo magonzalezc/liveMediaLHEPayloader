@@ -26,3 +26,17 @@
 *.exe
 *.out
 *.app
+
+#Directories
+testProgs/
+mediaServer/
+proxyServer/
+groupsock/
+
+
+#Files
+BasicUsageEnvironment/Makefile
+UsageEnvironment/Makefile
+config.*
+config.linux
+config.macosx
